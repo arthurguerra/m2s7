@@ -3,6 +3,7 @@ package projeto.business;
 import org.apache.commons.lang3.StringUtils;
 import projeto.dto.EstudanteDTO;
 import projeto.dto.TurmaDTO;
+import projeto.entity.Endereco;
 import projeto.entity.Estudante;
 import projeto.entity.Turma;
 import projeto.exception.BusinessException;
@@ -45,6 +46,8 @@ public class EstudanteBusiness {
 
         estudante.setTurma(turma);
 
+        estudante.setEndereco(new Endereco(estudanteDTO.getEnderecoDTO()));
+
         if (estudante.getIdEstudante() != null) {
             estudanteRepository.merge(estudante);
         } else {
@@ -70,6 +73,25 @@ public class EstudanteBusiness {
 
         if (StringUtils.isBlank(estudanteDTO.getEmail())) {
             erros.add("O e-mail do estudante é inválido.");
+        }
+
+        if (StringUtils.isBlank(estudanteDTO.getEnderecoDTO().getRua())) {
+            erros.add("A rua do endereço é inválida.");
+        }
+        if (StringUtils.isBlank(estudanteDTO.getEnderecoDTO().getNumero())) {
+            erros.add("O número do endereço é inválido.");
+        }
+        if (StringUtils.isBlank(estudanteDTO.getEnderecoDTO().getBairro())) {
+            erros.add("O bairro do endereço é inválido.");
+        }
+        if (StringUtils.isBlank(estudanteDTO.getEnderecoDTO().getCidade())) {
+            erros.add("A cidade do endereço é inválida.");
+        }
+        if (StringUtils.isBlank(estudanteDTO.getEnderecoDTO().getEstado())) {
+            erros.add("O estado do endereço é inválido.");
+        }
+        if (StringUtils.isBlank(estudanteDTO.getEnderecoDTO().getPais())) {
+            erros.add("O país do endereço é inválido.");
         }
 
         if (!erros.isEmpty()) {

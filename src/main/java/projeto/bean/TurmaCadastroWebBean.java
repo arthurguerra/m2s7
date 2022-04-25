@@ -9,7 +9,6 @@ import projeto.exception.BusinessException;
 import projeto.service.TurmaService;
 import projeto.utils.MessageUtils;
 
-import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
